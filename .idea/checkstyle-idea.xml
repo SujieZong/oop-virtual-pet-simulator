@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CheckStyle-IDEA" serialisationVersion="2">
+    <checkstyleVersion>10.21.1</checkstyleVersion>
+    <scanScope>AllSourcesWithTests</scanScope>
+    <option name="activeLocationIds">
+      <option value="f9be9156-617f-417b-80a3-a56b95030c49" />
+    </option>
+    <option name="locations">
+      <list>
+        <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="f9be9156-617f-417b-80a3-a56b95030c49" type="LOCAL_FILE" scope="All" description="NEU check">$USER_HOME$/Desktop/NEU/5004_OOP/northeastern_checks-1.xml</ConfigurationLocation>
+      </list>
+    </option>
+  </component>
+</project>
