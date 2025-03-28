@@ -8,6 +8,11 @@ import pet.Snake;
  * Demonstrates a single Pet (Snake) undergoing various interactions without user inout.
  */
 public class MyPetMain {
+  /**
+   * Demonstrates a single Pet (Snake) undergoing various interactions without user input.
+   *
+   * @param args command-line arguments (unused)
+   */
   public static void main(String[] args) {
     PetInterface snake = new Snake();
 
