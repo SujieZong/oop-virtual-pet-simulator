@@ -14,7 +14,8 @@ public class Snake extends AbstractPet {
 
   // Mood threshold constants. Snakes are sad if they are hungry, sleepy, or lonely.
   // I deliberately omitted the hygiene threshold because snakes are not as concerned with hygiene.
-  // also i do this to show that some thresholds are not always necessary, and are dependent on the pet type.
+  // also i do this to show that some thresholds are not always necessary,
+  // and are dependent on the pet type.
   // but they will still die if their hygiene is too low.
   private static final int HUNGER_SAD_THRESHOLD = 60;
   private static final int SOCIAL_SAD_THRESHOLD = 10;
@@ -76,8 +77,10 @@ public class Snake extends AbstractPet {
   @Override
   protected void updateMood() {
     // Determine mood based on current health status
-    if (health.getHunger() > HUNGER_SAD_THRESHOLD ||
-        health.getSocial() < SOCIAL_SAD_THRESHOLD ||
+    if (health.getHunger() > HUNGER_SAD_THRESHOLD
+        ||
+        health.getSocial() < SOCIAL_SAD_THRESHOLD
+        ||
         health.getSleep() < SLEEP_SAD_THRESHOLD) {
       setMood(MoodEnum.SAD);
     } else {

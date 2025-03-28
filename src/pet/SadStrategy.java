@@ -47,6 +47,8 @@ public class SadStrategy extends AbstractMoodStrategy {
         // Sleeping still helps sleep
         newSleep = clamp(newSleep + actionBoost);
         break;
+      default:
+        break;
     }
 
     return new HealthStatus(newHunger, newHygiene, newSocial, newSleep);

@@ -70,19 +70,27 @@ public class DeathThreshold {
    * @return true if any thresholds are crossed (pet should be dead), false otherwise
    */
   public boolean isDeadCondition(int hunger, int hygiene, int social, int sleep) {
-    return hunger > hungerLimit ||
-        hygiene < hygieneLimit ||
-        social < socialLimit ||
+    return hunger > hungerLimit
+        ||
+        hygiene < hygieneLimit
+        ||
+        social < socialLimit
+        ||
         sleep < sleepLimit;
   }
 
   @Override
   public String toString() {
-    return "DeathThreshold{" +
-        "hungerLimit=" + hungerLimit +
-        ", hygieneLimit=" + hygieneLimit +
-        ", socialLimit=" + socialLimit +
-        ", sleepLimit=" + sleepLimit +
+    return "DeathThreshold{"
+        +
+        "hungerLimit=" + hungerLimit
+        +
+        ", hygieneLimit=" + hygieneLimit
+        +
+        ", socialLimit=" + socialLimit
+        +
+        ", sleepLimit=" + sleepLimit
+        +
         '}';
   }
 }

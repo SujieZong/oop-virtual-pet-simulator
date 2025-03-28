@@ -39,7 +39,7 @@ public abstract class AbstractPet implements PetInterface {
 
     // Set initial strategy based on determined mood
     updateMoodStrategy();
-    checkDeath();
+    updateDeathStatus();
   }
 
   /**
@@ -59,7 +59,7 @@ public abstract class AbstractPet implements PetInterface {
     updateMood();
     updateMoodStrategy();
     // Check for death
-    checkDeath();
+    updateDeathStatus();
 
 
   }
@@ -76,7 +76,7 @@ public abstract class AbstractPet implements PetInterface {
     updateMoodStrategy();
 
     // Check for death
-    checkDeath();
+    updateDeathStatus();
 
 
   }
@@ -102,7 +102,7 @@ public abstract class AbstractPet implements PetInterface {
   /**
    * Checks if the pet's health has crossed any death thresholds.
    */
-  protected void checkDeath() {
+  protected void updateDeathStatus() {
     if (threshold.isDeadCondition(
         health.getHunger(),
         health.getHygiene(),
@@ -157,8 +157,16 @@ public abstract class AbstractPet implements PetInterface {
     updateMood();
     updateMoodStrategy();
     // Check for death
-    checkDeath();
-
-
+    updateDeathStatus();
   }
+
+  /**
+   * Revives the pet by setting its dead status to false.
+   * This method is intended for testing purposes only.
+   */
+  protected void revive() {
+    isDead = false;
+  }
+
+
 }

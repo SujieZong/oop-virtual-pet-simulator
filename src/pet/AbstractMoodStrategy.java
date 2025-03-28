@@ -57,19 +57,5 @@ public abstract class AbstractMoodStrategy implements MoodStrategy {
     return Math.max(VALUE_FLOOR, Math.min(VALUE_CEILING, value));
   }
 
-  protected int getHungerChangeRate() {
-    return hungerChangeRate;
-  }
 
-  protected int getHygieneChangeRate() {
-    return hygieneChangeRate;
-  }
-
-  protected int getSocialChangeRate() {
-    return socialChangeRate;
-  }
-
-  protected int getSleepChangeRate() {
-    return sleepChangeRate;
-  }
 }

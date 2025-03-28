@@ -1,5 +1,6 @@
 package pet;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -10,7 +11,7 @@ import org.junit.Test;
  * Tests for both HappyStrategy and SadStrategy mood implementations.
  * Tests the behavior of each mood type and transitions between them.
  */
-public class StrategyTest {
+public class MoodStrategiesTest {
   // Test parameters for strategies
   private static final int TEST_HUNGER_RATE = 3;
   private static final int TEST_HYGIENE_RATE = 2;
@@ -24,7 +25,7 @@ public class StrategyTest {
 
   /**
    * Sets up the test environment before each test.
-   * Initializes the strategies and the initial health status.
+   * Initializes the mood strategies and the initial health status.
    */
   @Before
   public void setUp() {

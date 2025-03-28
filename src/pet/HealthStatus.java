@@ -26,6 +26,8 @@ public class HealthStatus {
   }
 
   /**
+   * Gets the pet's current hunger level.
+   *
    * @return the pet's current hunger level
    */
   public int getHunger() {
@@ -33,6 +35,8 @@ public class HealthStatus {
   }
 
   /**
+   * Gets the pet's current hygiene level.
+   *
    * @return the pet's current hygiene level
    */
   public int getHygiene() {
@@ -40,6 +44,8 @@ public class HealthStatus {
   }
 
   /**
+   * Gets the pet's current social level.
+   *
    * @return the pet's current social level
    */
   public int getSocial() {
@@ -47,6 +53,8 @@ public class HealthStatus {
   }
 
   /**
+   * Gets the pet's current sleep level.
+   *
    * @return the pet's current sleep level
    */
   public int getSleep() {
@@ -55,11 +63,16 @@ public class HealthStatus {
 
   @Override
   public String toString() {
-    return "HealthStatus{" +
-        "hunger=" + hunger +
-        ", hygiene=" + hygiene +
-        ", social=" + social +
-        ", sleep=" + sleep +
+    return "HealthStatus{"
+        +
+        "hunger=" + hunger
+        +
+        ", hygiene=" + hygiene
+        +
+        ", social=" + social
+        +
+        ", sleep=" + sleep
+        +
         '}';
   }
 }

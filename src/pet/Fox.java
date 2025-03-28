@@ -74,9 +74,12 @@ public class Fox extends AbstractPet {
   @Override
   protected void updateMood() {
     // Determine mood based on current health status
-    if (health.getHunger() > HUNGER_SAD_THRESHOLD ||
-        health.getHygiene() < HYGIENE_SAD_THRESHOLD ||
-        health.getSocial() < SOCIAL_SAD_THRESHOLD ||
+    if (health.getHunger() > HUNGER_SAD_THRESHOLD
+        ||
+        health.getHygiene() < HYGIENE_SAD_THRESHOLD
+        ||
+        health.getSocial() < SOCIAL_SAD_THRESHOLD
+        ||
         health.getSleep() < SLEEP_SAD_THRESHOLD) {
       setMood(MoodEnum.SAD);
     } else {

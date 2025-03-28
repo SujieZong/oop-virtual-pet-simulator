@@ -1,5 +1,9 @@
 package pet;
 
+/**
+ * Interface defining the strategy for a pet's mood.
+ * Different moods will have different implementations of this strategy.
+ */
 public interface MoodStrategy {
 
   /**
