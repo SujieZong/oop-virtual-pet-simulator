@@ -134,11 +134,12 @@ public abstract class AbstractPet implements PetInterface {
    *
    * @return true if the pet is dead, false otherwise
    */
+  @Override
   public boolean isDead() {
     return isDead;
   }
 
-
+  @Override
   public DeathThreshold getDeathThreshold() {
     return threshold;
   }

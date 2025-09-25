@@ -81,16 +81,52 @@ public class DeathThreshold {
 
   @Override
   public String toString() {
-    return "DeathThreshold{"
-        +
-        "hungerLimit=" + hungerLimit
-        +
-        ", hygieneLimit=" + hygieneLimit
-        +
-        ", socialLimit=" + socialLimit
-        +
-        ", sleepLimit=" + sleepLimit
-        +
-        '}';
+    return String.format(
+        "DeathThreshold{hungerLimit=%d, hygieneLimit=%d, socialLimit=%d, sleepLimit=%d}",
+        hungerLimit, hygieneLimit, socialLimit, sleepLimit); // originally used concatenation
+  }
+
+  // below added after grading
+
+  /**
+   * Compares this DeathThreshold with another object for equality.
+   * Two DeathThreshold objects are equal if all their limit values are equal.
+   *
+   * @param obj the object to compare with
+   * @return true if the objects are equal, false otherwise
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+
+    DeathThreshold that = (DeathThreshold) obj;
+    return hungerLimit == that.hungerLimit
+        &&
+        hygieneLimit == that.hygieneLimit
+        &&
+        socialLimit == that.socialLimit
+        &&
+        sleepLimit == that.sleepLimit;
+  }
+
+  /**
+   * Returns a hash code value for this DeathThreshold.
+   * The hash code is calculated based on all limit values.
+   *
+   * @return the hash code value
+   */
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + hungerLimit;
+    result = 31 * result + hygieneLimit;
+    result = 31 * result + socialLimit;
+    result = 31 * result + sleepLimit;
+    return result;
   }
 }

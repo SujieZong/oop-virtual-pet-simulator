@@ -509,5 +509,62 @@ public class PetTest {
     assertEquals("Sleep just below threshold (24) should trigger sad mood", MoodEnum.SAD,
         pet.getMood());
   }
+
+  @Test
+  public void testCleaningInSadMood() {
+    // Set pet to sad mood
+    pet.setHealthStateAndUpdateState(50, 50, 50, 50);
+    pet.setMood(MoodEnum.SAD);
+
+    // Clean the pet
+    pet.interactWith(Action.CLEAN);
+
+    // Verify exact cleaning effect
+    assertEquals("Cleaning in sad mood should increase hygiene by action boost",
+        54, pet.getHealth().getHygiene()); // 50 + 4
+  }
+
+  @Test
+  public void testSleepingInSadMood() {
+    // Set pet to sad mood
+    pet.setHealthStateAndUpdateState(50, 50, 50, 50);
+    pet.setMood(MoodEnum.SAD);
+
+    // Put pet to sleep
+    pet.interactWith(Action.SLEEP);
+
+    // Verify exact sleeping effect
+    assertEquals("Sleeping in sad mood should increase sleep by action boost",
+        54, pet.getHealth().getSleep()); // 50 + 4
+  }
+
+  @Test
+  public void testAllHappyMoodTriggers() {
+    // Test each trigger for happy mood individually
+
+
+    pet.setHealthStateAndUpdateState(66, 50, 50, 50);
+    assertEquals("High hunger should trigger sad mood", MoodEnum.SAD, pet.getMood());
+    pet.interactWith(Action.FEED);
+    assertEquals("Low hunger should trigger happy mood", MoodEnum.HAPPY, pet.getMood());
+
+
+    pet.setHealthStateAndUpdateState(50, 29, 50, 50);
+    assertEquals("Low hygiene should trigger sad mood", MoodEnum.SAD, pet.getMood());
+    pet.interactWith(Action.CLEAN);
+    assertEquals("High hygiene should trigger happy mood", MoodEnum.HAPPY, pet.getMood());
+
+
+    pet.setHealthStateAndUpdateState(50, 50, 24, 50);
+    assertEquals("Low social should trigger sad mood", MoodEnum.SAD, pet.getMood());
+    pet.interactWith(Action.PLAY);
+    assertEquals("High social should trigger happy mood", MoodEnum.HAPPY, pet.getMood());
+
+
+    pet.setHealthStateAndUpdateState(50, 50, 50, 24);
+    assertEquals("Low sleep should trigger sad mood", MoodEnum.SAD, pet.getMood());
+    pet.interactWith(Action.SLEEP);
+    assertEquals("High sleep should trigger happy mood", MoodEnum.HAPPY, pet.getMood());
+  }
 }
 

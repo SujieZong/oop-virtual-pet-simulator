@@ -565,4 +565,32 @@ public class SnakeTest {
     snake.step();
     assertEquals(MoodEnum.SAD, snake.getMood());
   }
+
+  @Test
+  public void testAllHappyMoodTriggers() {
+    // Test each trigger for happy mood individually
+
+    snake.setHealthStateAndUpdateState(61, 50, 50, 50);
+    assertEquals("High hunger should trigger sad mood", MoodEnum.SAD, snake.getMood());
+    snake.interactWith(Action.FEED); // Reset hunger to 50
+    assertEquals("Low hunger should trigger happy mood", MoodEnum.HAPPY, snake.getMood());
+
+
+    snake.setHealthStateAndUpdateState(50, 50, 9, 50);
+    assertEquals("Low social should trigger sad mood", MoodEnum.SAD, snake.getMood());
+    snake.interactWith(Action.PLAY); // Reset social to 50
+    assertEquals("High social should trigger happy mood", MoodEnum.HAPPY, snake.getMood());
+
+
+    snake.setHealthStateAndUpdateState(50, 50, 50, 29);
+    assertEquals("Low sleep should trigger sad mood", MoodEnum.SAD, snake.getMood());
+    snake.interactWith(Action.SLEEP); // Reset sleep to 50
+    assertEquals("High sleep should trigger happy mood", MoodEnum.HAPPY, snake.getMood());
+
+    snake.setHealthStateAndUpdateState(50, 20, 50, 50);
+    assertEquals("Low hygiene should NOT trigger sad mood for snake", MoodEnum.HAPPY,
+        snake.getMood());
+    snake.interactWith(Action.CLEAN);
+    assertEquals("High hygiene should trigger happy mood", MoodEnum.HAPPY, snake.getMood());
+  }
 }

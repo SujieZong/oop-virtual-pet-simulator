@@ -127,7 +127,7 @@ public class MyPetMain {
         printStatus(pet);
       }
 
-      if (pet instanceof AbstractPet && ((AbstractPet) pet).isDead()) {
+      if (isDead(pet)) {
         System.out.println("Pet died during simulation at step " + (i + 1));
         break;
       }

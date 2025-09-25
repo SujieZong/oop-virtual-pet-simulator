@@ -2,6 +2,7 @@ package pet;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -49,5 +50,78 @@ public class DeathThresholdTest {
 
     // Multiple thresholds crossed
     assertTrue(threshold.isDeadCondition(90, 10, 5, 2));
+  }
+
+  // add after grading
+  @Test
+  public void testEquals_SameValues_ReturnsTrue() {
+    // Arrange
+    DeathThreshold threshold1 = new DeathThreshold(85, 15, 15, 10);
+    DeathThreshold threshold2 = new DeathThreshold(85, 15, 15, 10);
+
+    // Act & Assert
+    assertEquals(threshold1, threshold2);
+  }
+
+  @Test
+  public void testEquals_DifferentValues_ReturnsFalse() {
+    // Arrange
+    DeathThreshold threshold1 = new DeathThreshold(85, 15, 15, 10);
+    DeathThreshold threshold2 = new DeathThreshold(90, 15, 15, 10); // Different hungerLimit
+    DeathThreshold threshold3 = new DeathThreshold(85, 20, 15, 10); // Different hygieneLimit
+    DeathThreshold threshold4 = new DeathThreshold(85, 15, 20, 10); // Different socialLimit
+    assertNotEquals(threshold1, threshold2);
+    assertNotEquals(threshold1, threshold3);
+    assertNotEquals(threshold1, threshold4);
+    DeathThreshold threshold5 = new DeathThreshold(85, 15, 15, 15); // Different sleepLimit
+    assertNotEquals(threshold1, threshold5);
+  }
+
+  @Test
+  public void testEqualsNullObjectReturnsFalse() {
+    // Arrange
+    DeathThreshold threshold = new DeathThreshold(85, 15, 15, 10);
+
+    // Act & Assert
+    assertNotEquals(threshold, null);
+  }
+
+  @Test
+  public void testEqualsDifferentClassReturnsFalse() {
+    // Arrange
+    DeathThreshold threshold = new DeathThreshold(85, 15, 15, 10);
+    Object differentObject = "Not a DeathThreshold";
+
+    // Act & Assert
+    assertNotEquals(threshold, differentObject);
+  }
+
+  @Test
+  public void testEqualsSameReferenceReturnsTrue() {
+    // Arrange
+    DeathThreshold threshold = new DeathThreshold(85, 15, 15, 10);
+
+    // Act & Assert
+    assertEquals(threshold, threshold);
+  }
+
+  @Test
+  public void testHashCodeSameValuesSameHashCode() {
+    // Arrange
+    DeathThreshold threshold1 = new DeathThreshold(85, 15, 15, 10);
+    DeathThreshold threshold2 = new DeathThreshold(85, 15, 15, 10);
+
+    // Act & Assert
+    assertEquals(threshold1.hashCode(), threshold2.hashCode());
+  }
+
+  @Test
+  public void testHashCodeDifferentValuesDifferentHashCodes() {
+    // Arrange
+    DeathThreshold threshold1 = new DeathThreshold(85, 15, 15, 10);
+    DeathThreshold threshold2 = new DeathThreshold(90, 20, 20, 15); // All values different
+
+    // Act & Assert
+    assertNotEquals(threshold1.hashCode(), threshold2.hashCode());
   }
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -507,5 +508,65 @@ public class FoxTest {
 
     assertEquals("Sleep just below threshold (24) should trigger sad mood", MoodEnum.SAD,
         fox.getMood());
+  }
+
+  @Test
+  public void testCleaningInSadMood() {
+    // Set fox to sad mood
+    fox.setHealthStateAndUpdateState(50, 50, 50, 50);
+    fox.setMood(MoodEnum.SAD);
+
+    // Clean the fox
+    fox.interactWith(Action.CLEAN);
+
+    // Verify exact cleaning effect
+    assertEquals("Cleaning in sad mood should increase hygiene by action boost",
+        54, fox.getHealth().getHygiene()); // 50 + 4
+  }
+
+  @Test
+  public void testSleepingInSadMood() {
+    // Set fox to sad mood
+    fox.setHealthStateAndUpdateState(50, 50, 50, 50);
+    fox.setMood(MoodEnum.SAD);
+
+    // Put fox to sleep
+    fox.interactWith(Action.SLEEP);
+
+    // Verify exact sleeping effect
+    assertEquals("Sleeping in sad mood should increase sleep by action boost",
+        54, fox.getHealth().getSleep()); // 50 + 4
+  }
+
+  @Test
+  public void testAllHappyMoodTriggers() {
+    // Test each trigger for happy mood individually
+
+    // 1. Low hunger
+    fox.setHealthStateAndUpdateState(71, 50, 50, 50);
+    assertEquals("High hunger should trigger sad mood", MoodEnum.SAD, fox.getMood());
+    fox.interactWith(Action.FEED); // Reset hunger to 50
+    assertEquals("Low hunger should trigger happy mood", MoodEnum.HAPPY, fox.getMood());
+
+
+    // 2. High hygiene
+    fox.setHealthStateAndUpdateState(50, 34, 50, 50);
+    assertEquals("Low hygiene should trigger sad mood", MoodEnum.SAD, fox.getMood());
+    fox.interactWith(Action.CLEAN); // Reset hygiene to 50
+    assertEquals("High hygiene should trigger happy mood", MoodEnum.HAPPY, fox.getMood());
+
+
+    // 3. High social
+    fox.setHealthStateAndUpdateState(50, 50, 34, 50); // Social >= 35 threshold
+    assertEquals("Low social should trigger sad mood", MoodEnum.SAD, fox.getMood());
+    fox.interactWith(Action.PLAY); // Reset social to 50
+    assertEquals("High social should trigger happy mood", MoodEnum.HAPPY, fox.getMood());
+
+
+    // 4. High sleep
+    fox.setHealthStateAndUpdateState(50, 50, 50, 24); // Sleep >= 25 threshold
+    assertEquals("Low sleep should trigger sad mood", MoodEnum.SAD, fox.getMood());
+    fox.interactWith(Action.SLEEP); // Reset sleep to 50
+    assertEquals("High sleep should trigger happy mood", MoodEnum.HAPPY, fox.getMood());
   }
 }
